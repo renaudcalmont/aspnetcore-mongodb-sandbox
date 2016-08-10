@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using Sandbox.Server.DomainObjects.Interfaces.Handlers.Abstract;
 using Sandbox.Server.DomainObjects.Interfaces.Models.Abstract;
@@ -35,6 +36,11 @@ namespace Sandbox.Server.BusinessLogic.Handlers.Abstract
         public virtual void Delete(TE instance)
         {
              _repository.Delete(instance);
+        }
+
+        public virtual async Task<IEnumerable<TE>> RetrieveAll()
+        {
+            return await _repository.RetrieveAll();
         }
     }
 }

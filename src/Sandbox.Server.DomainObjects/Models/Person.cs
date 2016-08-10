@@ -1,5 +1,4 @@
-﻿using System;
-using Sandbox.Server.DomainObjects.Models.Abstract;
+﻿using Sandbox.Server.DomainObjects.Models.Abstract;
 
 namespace Sandbox.Server.DomainObjects.Models
 {

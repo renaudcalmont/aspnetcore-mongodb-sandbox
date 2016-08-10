@@ -18,7 +18,7 @@ namespace Sandbox.Server.DataAccess.Repositories.Abstract
             {
                 if (readOnlyAccess == null)
                 {
-                    readOnlyAccess = new MongoClient("mongodb://127.0.0.1:32768?slaveOk=true");
+                    readOnlyAccess = new MongoClient("mongodb://127.0.0.1:27017?slaveOk=true"); // TODO: inject the connection string from configuration
                 }
             }
 
@@ -33,7 +33,7 @@ namespace Sandbox.Server.DataAccess.Repositories.Abstract
             {
                 if (writeAccess == null)
                 {
-                    writeAccess = new MongoClient("mongodb://127.0.0.1:32768");
+                    writeAccess = new MongoClient("mongodb://127.0.0.1:27017"); // TODO: inject the connection string from configuration
                 }
             }
 

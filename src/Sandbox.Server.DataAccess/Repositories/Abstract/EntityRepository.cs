@@ -11,7 +11,7 @@ namespace Sandbox.Server.DataAccess.Repositories.Abstract
     {
         private static readonly Random RandomGenerator;
 
-        private MongoCollectionHandler collection = new MongoCollectionHandler();
+        private MongoCollectionHandler collectionHandler = new MongoCollectionHandler();
 
         static EntityRepository()
         {
@@ -21,29 +21,36 @@ namespace Sandbox.Server.DataAccess.Repositories.Abstract
         public virtual async Task<TE> Create(TE instance)
         {
             // Increment revision
-            instance.Revision = this.GenerateRevision();
+            instance.Revision = GenerateRevision();
 
-            await this.collection.Write<TE>().InsertOneAsync(instance);
+            await collectionHandler.Write<TE>().InsertOneAsync(instance);
             return instance;
         }
 
-        public virtual Task<TE> Retrieve(Guid id)
+        public virtual async Task<TE> Retrieve(Guid id)
         {
             var filter = Builders<TE>.Filter.Eq("_id", id);
-
-            return this.collection.ReadOnly<TE>().FindSync(filter).SingleAsync();
+            
+            var list = await collectionHandler.ReadOnly<TE>().FindAsync(filter);
+            return list.SingleOrDefault();
         }
 
         public virtual async Task<TE> Update(TE instance)
         {
             var filter = Builders<TE>.Filter.Eq("_id", instance.Id);
 
-            // TODO: concurrency check
+            // Concurrency check
+            var previousInstance = await Retrieve(instance.Id);
+            if (previousInstance == null
+                || previousInstance.Revision != instance.Revision)
+            {
+                throw new Exception("The entity was modified by another process");
+            }
 
             // Increment revision
-            instance.Revision = this.GenerateRevision();
+            instance.Revision = GenerateRevision();
 
-            await this.collection.Write<TE>().ReplaceOneAsync(filter, instance);
+            await collectionHandler.Write<TE>().ReplaceOneAsync(filter, instance);
             return instance;
         }
 
@@ -51,14 +58,14 @@ namespace Sandbox.Server.DataAccess.Repositories.Abstract
         {
             var filter = Builders<TE>.Filter.Eq("_id", instance.Id);
 
-            await this.collection.Write<TE>().DeleteOneAsync(filter);
+            await collectionHandler.Write<TE>().DeleteOneAsync(filter);
         }
 
         public virtual async Task<IEnumerable<TE>> RetrieveAll()
         {
             var filter = Builders<TE>.Filter.Empty;
 
-            var list = await this.collection.ReadOnly<TE>().FindSync(filter).ToListAsync();
+            var list = await collectionHandler.ReadOnly<TE>().FindSync(filter).ToListAsync();
             return list;
         }
 
