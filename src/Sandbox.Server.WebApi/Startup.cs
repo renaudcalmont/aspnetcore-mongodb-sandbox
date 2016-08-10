@@ -7,8 +7,12 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using Sandbox.Server.BusinessLogic.Handlers;
+using Sandbox.Server.DataAccess.Repositories;
+using Sandbox.Server.DomainObjects.Interfaces.Handlers;
+using Sandbox.Server.DomainObjects.Interfaces.Repositories;
 
-namespace Sandbox
+namespace Sandbox.Server.WebApi
 {
     public class Startup
     {
@@ -29,6 +33,12 @@ namespace Sandbox
         {
             // Add framework services.
             services.AddMvc();
+
+            // Data access dependency injection
+            services.AddSingleton<IPersonRepository, PersonRepository>();
+
+            // Business logic dependency injection
+            services.AddTransient<IPersonHandler, PersonHandler>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
