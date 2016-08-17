@@ -3,18 +3,10 @@ sudo: required
 services:
   - docker
 
-before_install:
-  - sudo apt-get -qq update
-  - sudo apt-get install -y dotnet
-
-install:
-  - dotnet restore
-
-before_script:
-  - docker build -t aspnetcore-mongodb-sandbox .
+install: true
 
 script:
-  - cd test/Sandbox.Server.IntegrationTest; dotnet test
+  - docker build -t aspnetcore-mongodb-sandbox .
 
 after_success:
   - if [ "$TRAVIS_BRANCH" == "master" ]; then
