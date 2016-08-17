@@ -6,7 +6,7 @@ services:
 install: true
 
 script:
-  - docker build -t aspnetcore-mongodb-sandbox .
+  - docker build -t renaudcalmont/aspnetcore-mongodb-sandbox .
 
 after_success:
   - if [ "$TRAVIS_BRANCH" == "master" ]; then
