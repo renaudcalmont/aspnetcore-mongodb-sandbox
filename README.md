@@ -1,3 +1,4 @@
+[![Build Status](https://travis-ci.org/renaudcalmont/aspnetcore-mongodb-sandbox.svg?branch=master)](https://travis-ci.org/renaudcalmont/aspnetcore-mongodb-sandbox)
 ## The goal of this project is:
 
 MVP for an enterprise-grade WebAPI... Still a lot going on!
