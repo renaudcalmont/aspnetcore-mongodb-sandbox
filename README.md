@@ -45,12 +45,10 @@ Clone the project and open it in VS code. The prerequisite to run are:
 * .NET Core Command Line Tools
 
 You should then be able to start the WebAPI from the debugger in VS code. Alternatively, type __dotnet run__ from a command line in the _src/Sandbox.Server.WebApi_ sub-folder.
+
 A sample __run_container__ shell script to start inside a container is provided but not much useful. I'm waiting for some issues to be closed in the dependencies to replace it with a more interesting docker-composer script.
 
 ## TODO:
-* Persistence
-    * read the connection strings from the configuration
-    * get the connection strings from an external resource directory for production environment
 * Security
     * roles and ACL
     * integrate OWIN for OAuth2 authentication
@@ -67,6 +65,8 @@ A sample __run_container__ shell script to start inside a container is provided 
     * consider adopting a specification such as OData or JSON API - or keep it going its own way...
     * use swagger when in development mode
     * add minimal client-side libraries (such as bower and gulp)
+* Persistence
+    * get the connection strings from an external resource directory for production environment
 * Yeoman
     * write the generator for the entire project
     * consider a generator for adding a model once the skeleton is stabilized

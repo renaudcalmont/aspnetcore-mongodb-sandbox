@@ -17,7 +17,7 @@ namespace Sandbox.Server.WebApi
         {
             var builder = new ConfigurationBuilder()
                 .SetBasePath(env.ContentRootPath)
-                .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
+                .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
                 .AddJsonFile($"appsettings.{env.EnvironmentName}.json", optional: true)
                 .AddEnvironmentVariables();
             Configuration = builder.Build();
@@ -46,6 +46,12 @@ namespace Sandbox.Server.WebApi
 
             app.UseDefaultFiles();
             app.UseStaticFiles();
+
+            // Open database connections
+            DataAccess.Repositories.Abstract.MongoCollectionHandler
+                .OpenConnections(
+                    Configuration.GetConnectionString("readOnlyAccess"),
+                    Configuration.GetConnectionString("writeAccess"));
 
             app.UseMvc();
         }

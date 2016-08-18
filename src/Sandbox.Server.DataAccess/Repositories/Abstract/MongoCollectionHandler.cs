@@ -6,22 +6,24 @@ namespace Sandbox.Server.DataAccess.Repositories.Abstract
     {
         private static IMongoClient readOnlyAccess;
         private static IMongoClient writeAccess;
-        
-        private static readonly object readOnlyLock = new object();
-        private static readonly object writeLock = new object();
+
+        public static void OpenConnections(string readOnlyAccess, string writeAccess)
+        {
+            if (readOnlyAccess.StartsWith("mongodb://"))
+            {
+                MongoCollectionHandler.readOnlyAccess = new MongoClient(readOnlyAccess);
+            }
+
+            if (writeAccess.StartsWith("mongodb://"))
+            {
+                MongoCollectionHandler.writeAccess = new MongoClient(writeAccess);
+            }
+        }
 
         public IMongoCollection<TE> ReadOnly<TE, TC>()
             where TE : TC
             where TC : DomainObjects.Interfaces.Models.Abstract.IEntity
         {
-            lock (readOnlyLock)
-            {
-                if (readOnlyAccess == null)
-                {
-                    readOnlyAccess = new MongoClient("mongodb://127.0.0.1:27017?slaveOk=true"); // TODO: inject the connection string from configuration
-                }
-            }
-
             return readOnlyAccess.GetDatabase("sandbox").GetCollection<TE>(typeof(TC).Name);
         }
 
@@ -29,14 +31,6 @@ namespace Sandbox.Server.DataAccess.Repositories.Abstract
             where TE : TC
             where TC : DomainObjects.Interfaces.Models.Abstract.IEntity
         {
-            lock (writeLock)
-            {
-                if (writeAccess == null)
-                {
-                    writeAccess = new MongoClient("mongodb://127.0.0.1:27017"); // TODO: inject the connection string from configuration
-                }
-            }
-
             return writeAccess.GetDatabase("sandbox").GetCollection<TE>(typeof(TC).Name);
         }
 

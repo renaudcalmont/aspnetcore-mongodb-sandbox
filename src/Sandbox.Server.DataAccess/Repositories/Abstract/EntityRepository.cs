@@ -37,20 +37,20 @@ namespace Sandbox.Server.DataAccess.Repositories.Abstract
 
         public virtual async Task<TE> Update(TE instance)
         {
-            var filter = Builders<TE>.Filter.Eq("_id", instance.Id);
-
-            // Concurrency check
-            var previousInstance = await Retrieve(instance.Id);
-            if (previousInstance == null
-                || previousInstance.Revision != instance.Revision)
-            {
-                throw new Exception("The entity was modified by another process");
-            }
+            var filter = Builders<TE>.Filter.And(
+                Builders<TE>.Filter.Eq("_id", instance.Id),
+                Builders<TE>.Filter.Eq("Revision", instance.Revision));
 
             // Increment revision
             instance.Revision = GenerateRevision();
 
-            await collectionHandler.Write<TE>().ReplaceOneAsync(filter, instance);
+            // Concurrency check
+            var previousInstance = await collectionHandler.Write<TE>().FindOneAndReplaceAsync(filter, instance);
+            if (previousInstance == null)
+            {
+                throw new Exception("The entity was modified by another process");
+            }
+            
             return instance;
         }
 
