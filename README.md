@@ -1,4 +1,7 @@
-# [![Build Status](https://travis-ci.org/renaudcalmont/aspnetcore-mongodb-sandbox.svg?branch=master)](https://travis-ci.org/renaudcalmont/aspnetcore-mongodb-sandbox) aspnetcore-mongodb-sandbox
+# aspnetcore-mongodb-sandbox
+[![Build Status](https://travis-ci.org/renaudcalmont/aspnetcore-mongodb-sandbox.svg?branch=master)](https://travis-ci.org/renaudcalmont/aspnetcore-mongodb-sandbox)
+Artefact container is on [Docker hub](https://hub.docker.com/r/renaudcalmont/aspnetcore-mongodb-sandbox/)
+
 ## The goal of this project is:
 
 MVP for an enterprise-grade WebAPI... Still a lot going on!
@@ -15,6 +18,34 @@ Here are some principles in mind. Any relevant design pattern might be added
 * The business logic should be reusable from many communication channel (SOAP, restful HTTP, server-side web pages, rich client...).
 * As a key component, the business logic should be thouroughly covered by specific unit tests
 * Full-stack integration tests are still relevant as automated check before any QA campaign
+
+The layers are separated as follow:
+
+| Layer          | Responsibility, class types                      |
+|----------------|--------------------------------------------------|
+| Web API        | Controller and associated Views + authentication |
+| Business Logic | Handler (both for Entities and other Models)     |
+| Data Access    | Repository (for Entities), other persistent data |
+| Domain Objects | Models + layers definition (Interfaces)          |
+
+A typical web request have parameters in its URL and/or the JSON representation of a View in its body.
+Said request is sent by the framework to a relevant controller according to routing rules, after authentication of the origin.
+
+The Controller should be as thin as possible, managing the transformation of the View in a corresponding Model/Entity and HTTP stuff.
+It then delegates further processing of the Model/Entity to the corresponding Handler.
+
+The Handler manages any operation on the data contained in the Model/Entity. In case of an Entity, it will delegate any persistence operation to the corresponding Repository.
+
+The result of the operation, either useful artefact or error message, is followed all the way up to the Controller to construct the HTTP response.
+
+## How to use it on your development machine:
+
+Clone the project and open it in VS code. The prerequisite to run are:
+* A running MongoDB server on localhost with default config
+* .NET Core Command Line Tools
+
+You should then be able to start the WebAPI from the debugger in VS code. Alternatively, type __dotnet run__ from a command line in the _src/Sandbox.Server.WebApi_ sub-folder.
+A sample __run_container__ shell script to start inside a container is provided but not much useful. I'm waiting for some issues to be closed in the dependencies to replace it with a more interesting docker-composer script.
 
 ## TODO:
 * Persistence
@@ -49,6 +80,7 @@ Trying here to keep track of and thank all the building blocks composing this pr
 * Microsoft [ASP.NET Core](http://www.asp.net/core) of course and for [VS code](https://code.visualstudio.com) editor
 * [MongoDB](https://www.mongodb.com/) and their [C# Driver](https://docs.mongodb.com/ecosystem/drivers/csharp/)
 * [Yeoman](http://yeoman.io/) - every project.json here started with a "[yo aspnet](https://www.npmjs.com/package/generator-aspnet)"
-* [Docker](https://www.docker.com/)
+* [Docker](https://www.docker.com/), including the hub
+* [Travis CI](https://travis-ci.org/)
 
 Feel free to PR on this document or the project's code.
