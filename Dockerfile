@@ -1,15 +1,15 @@
 FROM microsoft/dotnet:latest
 
-COPY . /app
+COPY ./src /app
 
 WORKDIR /app
 
 RUN ["dotnet", "restore"]
 
-RUN ["dotnet", "build", "src/Sandbox.Server.Http"]
+RUN ["dotnet", "build", "Sandbox.Server.Http"]
 
 EXPOSE 5000/tcp
 
-WORKDIR /app/src/Sandbox.Server.Http
+WORKDIR /app/Sandbox.Server.Http
 
 ENTRYPOINT ["dotnet", "run", "--server.urls", "http://0.0.0.0:5000"]

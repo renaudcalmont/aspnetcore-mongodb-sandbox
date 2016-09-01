@@ -239,5 +239,5 @@ _Pvt_Extensions
 # IntelliJ
 .idea
 
-# docker-compose
+# Docker Compose
 docker-compose/

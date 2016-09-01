@@ -49,7 +49,7 @@ You should then be able to start the WebAPI from the debugger in VS code.
 
 Alternatively, type __dotnet run__ from a command line in the _src/Sandbox.Server.Http_ sub-folder.
 
-A sample __docker-composer.yml__ script is provided. After running an initial __docker-compose up__ from the command line on a Docker-enabled machine, the WebAPI will respond at http://localhost:5000 (same as running in the debugger) and mongodb will respond at its default location mongodb://localhost:27017.
+A sample __docker-compose.yml__ script is provided. After running an initial __docker-compose up__ from the command line on a Docker-enabled machine, the WebAPI will respond at http://localhost:5000 (same as running in the debugger) and mongodb will respond at its default location mongodb://localhost:27017.
 
 The MongoDB container port mapping is for convenience only. So you can safely remove it to avoid conflict with any other running MongoDB daemon.
 
@@ -77,7 +77,6 @@ The MongoDB container port mapping is for convenience only. So you can safely re
     * consider a generator for adding a model once the skeleton is stabilized
 * Consistency
     * documentation
-    * StyleCop? SonarCube?
 
 
 ## Credits:
@@ -85,7 +84,7 @@ Trying here to keep track of and thank all the building blocks composing this pr
 * Microsoft [ASP.NET Core](http://www.asp.net/core) of course and for [VS code](https://code.visualstudio.com) editor
 * [MongoDB](https://www.mongodb.com/) and their [C# Driver](https://docs.mongodb.com/ecosystem/drivers/csharp/)
 * [Yeoman](http://yeoman.io/) - every project.json here started with a "[yo aspnet](https://www.npmjs.com/package/generator-aspnet)"
-* [Docker](https://www.docker.com/), including the hub
+* [Docker](https://www.docker.com/), including the hub and compose
 * [Travis CI](https://travis-ci.org/)
 
 Feel free to PR on this document or the project's code.
