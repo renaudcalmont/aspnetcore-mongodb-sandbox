@@ -6,13 +6,13 @@
             "type": "coreclr",
             "request": "launch",
             "preLaunchTask": "build",
-            "program": "${workspaceRoot}/src/Sandbox.Server.WebApi/bin/Debug/netcoreapp1.0/Sandbox.Server.WebApi.dll",
+            "program": "${workspaceRoot}/src/Sandbox.Server.Http/bin/Debug/netcoreapp1.0/Sandbox.Server.Http.dll",
             "args": [],
-            "cwd": "${workspaceRoot}/src/Sandbox.Server.WebApi",
+            "cwd": "${workspaceRoot}/src/Sandbox.Server.Http",
             "stopAtEntry": false,
             "externalConsole": false,
             "env": {
-                "ASPNETCORE_ENVIRONMENT": "Development"
+                "ASPNETCORE_ENVIRONMENT": "development"
             }
         }
     ]

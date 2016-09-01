@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.Configuration;
 
-namespace Sandbox.Server.WebApi
+namespace Sandbox.Server.Http
 {
     public class Program
     {

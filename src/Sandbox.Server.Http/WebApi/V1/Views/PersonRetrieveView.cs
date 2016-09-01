@@ -1,8 +1,8 @@
 using System;
 using Sandbox.Server.DomainObjects.Models;
-using Sandbox.Server.WebApi.V1.Views.Abstract;
+using Sandbox.Server.Http.WebApi.V1.Views.Abstract;
 
-namespace Sandbox.Server.WebApi.V1.Views
+namespace Sandbox.Server.Http.WebApi.V1.Views
 {
     public class PersonRetrieveView : EntityView<Person>
     {

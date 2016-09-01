@@ -1,7 +1,7 @@
 using System.Linq;
 using System.Reflection;
 
-namespace Sandbox.Server.WebApi.V1.Views.Abstract
+namespace Sandbox.Server.Http.WebApi.V1.Views.Abstract
 {
     public abstract class EntityView<TE>
         where TE : Sandbox.Server.DomainObjects.Interfaces.Models.Abstract.IEntity

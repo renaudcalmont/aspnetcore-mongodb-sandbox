@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using Sandbox.Server.DomainObjects.Interfaces.Handlers.Abstract;
 using Sandbox.Server.DomainObjects.Interfaces.Models.Abstract;
 
-namespace Sandbox.Server.WebApi.V1.Controllers.Abstract
+namespace Sandbox.Server.Http.WebApi.V1.Controllers.Abstract
 {
     public abstract class EntityController<TE, TEH> : Controller
       where TE : IEntity

@@ -9,7 +9,7 @@ using Sandbox.Server.DataAccess.Repositories;
 using Sandbox.Server.DomainObjects.Interfaces.Handlers;
 using Sandbox.Server.DomainObjects.Interfaces.Repositories;
 
-namespace Sandbox.Server.WebApi
+namespace Sandbox.Server.Http
 {
     public class Startup
     {

@@ -1,6 +1,7 @@
-# aspnetcore-mongodb-sandbox
-[![Build Status](https://travis-ci.org/renaudcalmont/aspnetcore-mongodb-sandbox.svg?branch=master)](https://travis-ci.org/renaudcalmont/aspnetcore-mongodb-sandbox)
-Artefact container is on [Docker hub](https://hub.docker.com/r/renaudcalmont/aspnetcore-mongodb-sandbox/)
+# aspnetcore-mongodb-sandbox [![Build Status](https://travis-ci.org/renaudcalmont/aspnetcore-mongodb-sandbox.svg?branch=master)](https://travis-ci.org/renaudcalmont/aspnetcore-mongodb-sandbox)
+
+
+Built container is available on [Docker hub](https://hub.docker.com/r/renaudcalmont/aspnetcore-mongodb-sandbox/)
 
 ## The goal of this project is:
 
@@ -44,9 +45,13 @@ Clone the project and open it in VS code. The prerequisite to run are:
 * A running MongoDB server on localhost with default config
 * .NET Core Command Line Tools
 
-You should then be able to start the WebAPI from the debugger in VS code. Alternatively, type __dotnet run__ from a command line in the _src/Sandbox.Server.WebApi_ sub-folder.
+You should then be able to start the WebAPI from the debugger in VS code.
 
-A sample __run_container__ shell script to start inside a container is provided but not much useful. I'm waiting for some issues to be closed in the dependencies to replace it with a more interesting docker-composer script.
+Alternatively, type __dotnet run__ from a command line in the _src/Sandbox.Server.Http_ sub-folder.
+
+A sample __docker-composer.yml__ script is provided. After running an initial __docker-compose up__ from the command line on a Docker-enabled machine, the WebAPI will respond at http://localhost:5000 (same as running in the debugger) and mongodb will respond at its default location mongodb://localhost:27017.
+
+The MongoDB container port mapping is for convenience only. So you can safely remove it to avoid conflict with any other running MongoDB daemon.
 
 ## TODO:
 * Security

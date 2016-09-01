@@ -1,0 +1,16 @@
+version: '2' 
+services:
+  sandbox-mongo: 
+    image: mongo
+    ports:
+      - "27017:27017"
+    volumes:
+      - ./docker-compose/sandbox-mongo/data/db:/data/db:rw
+  sandbox-server: 
+    build: .
+    depends_on: 
+      - sandbox-mongo 
+    environment:
+      - ASPNETCORE_ENVIRONMENT=docker-compose
+    ports: 
+      - "5000:5000"

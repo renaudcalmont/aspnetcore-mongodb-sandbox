@@ -23,7 +23,7 @@ namespace Sandbox.Server.DomainObjects.Models.Abstract
         if (_id != null) return _id.Value;
 
         var date = BitConverter.GetBytes(DateTime.Now.ToBinary());
-        ////Array.Reverse(date);
+        Array.Reverse(date);
 
         var random = new byte[8];
         RandomGenerator.NextBytes(random);
@@ -89,7 +89,7 @@ namespace Sandbox.Server.DomainObjects.Models.Abstract
     {
       var date = new byte[8];
       Buffer.BlockCopy(item.ToByteArray(), 0, date, 0, 8);
-      ////Array.Reverse(date);
+      Array.Reverse(date);
 
       try
       {

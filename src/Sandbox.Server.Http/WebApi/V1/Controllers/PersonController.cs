@@ -5,12 +5,12 @@ using Microsoft.AspNetCore.Mvc;
 using Sandbox.Server.DomainObjects.Interfaces.Handlers;
 using Sandbox.Server.DomainObjects.Interfaces.Handlers.Abstract;
 using Sandbox.Server.DomainObjects.Models;
-using Sandbox.Server.WebApi.V1.Controllers.Abstract;
-using Sandbox.Server.WebApi.V1.Views;
+using Sandbox.Server.Http.WebApi.V1.Controllers.Abstract;
+using Sandbox.Server.Http.WebApi.V1.Views;
 
-namespace Sandbox.Server.WebApi.V1.Controllers
+namespace Sandbox.Server.Http.WebApi.V1.Controllers
 {
-    [Route("api/v1/[controller]")]
+    [Route("api/v1/persons")]
     public class PersonController : EntityController<Person, IEntityHandler<Person>>
     {
         public PersonController(IPersonHandler handler) : base(handler)

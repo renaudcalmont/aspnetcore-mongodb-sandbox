@@ -72,7 +72,7 @@ namespace Sandbox.Server.DataAccess.Repositories.Abstract
         protected Guid GenerateRevision()
         {
             var date = BitConverter.GetBytes(DateTime.Now.ToBinary());
-            ////Array.Reverse(date);
+            Array.Reverse(date);
 
             var random = new byte[8];
             RandomGenerator.NextBytes(random);

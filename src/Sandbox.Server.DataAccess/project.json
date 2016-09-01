@@ -3,7 +3,7 @@
 
   "dependencies": {
     "NETStandard.Library": "1.6.0",
-    "MongoDB.Driver":"2.3.0-beta1",
+    "MongoDB.Driver":"2.3.0-rc1",
     "Sandbox.Server.DomainObjects": "1.0.0"
   },
 
