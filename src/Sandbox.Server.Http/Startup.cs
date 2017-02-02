@@ -41,11 +41,15 @@ namespace Sandbox.Server.Http
 
             services.AddSwaggerGen(c =>
             {
-                c.SwaggerDoc("v1", new Info { 
-                    Title = "My API", 
-                    Version = "v1" 
-                    });
+                c.SwaggerDoc("v1", new Info { Title = "My API v1", Version = "API v1" });
+                // Add new API version below
+                //c.SwaggerDoc("v2", new Info { Title = "My API v2", Version = "API v2" });
+
+                c.DocInclusionPredicate((docName, api) => {
+                    return api.RelativePath.Contains(docName);
+                });
             });
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -69,7 +73,9 @@ namespace Sandbox.Server.Http
                 app.UseSwagger();
 
                 app.UseSwaggerUi(c => {
-                    c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API V1");
+                    //c.SwaggerEndpoint("/swagger/v2/swagger.json", "V2 Docs");
+                    // Add new Api version above
+                    c.SwaggerEndpoint("/swagger/v1/swagger.json", "V1 Docs");
                 });
             }
         }
