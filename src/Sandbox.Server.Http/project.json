@@ -19,7 +19,8 @@
     "Microsoft.Extensions.Options.ConfigurationExtensions": "1.0.0",
     "Sandbox.Server.DomainObjects": "1.0.0",
     "Sandbox.Server.DataAccess": "1.0.0",
-    "Sandbox.Server.BusinessLogic": "1.0.0"
+    "Sandbox.Server.BusinessLogic": "1.0.0",
+    "Swashbuckle.AspNetCore": "1.0.0-rc1"
   },
 
   "tools": {
@@ -37,7 +38,8 @@
 
   "buildOptions": {
     "emitEntryPoint": true,
-    "preserveCompilationContext": true
+    "preserveCompilationContext": true,
+    "debugType": "portable"
   },
 
   "runtimeOptions": {

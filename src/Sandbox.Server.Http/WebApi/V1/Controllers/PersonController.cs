@@ -17,6 +17,11 @@ namespace Sandbox.Server.Http.WebApi.V1.Controllers
         {
         }
 
+        /// <summary>
+        /// Create a new instance of Person
+        /// </summary>
+        /// <param name="request"></param>
+        /// <returns></returns>
         [HttpPost]
         public async Task<PersonRetrieveView> Post([FromBody] PersonCreateView request)
         {
@@ -29,6 +34,11 @@ namespace Sandbox.Server.Http.WebApi.V1.Controllers
           return view;
         }
 
+        /// <summary>
+        /// Get a specific user based on Guid
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         [HttpGet("{id}")]
         public async Task<PersonRetrieveView> Get(Guid id)
         {
@@ -43,6 +53,12 @@ namespace Sandbox.Server.Http.WebApi.V1.Controllers
           return view;
         }
 
+        /// <summary>
+        /// Update a specific Person instance based on guid (param) and PersonUpdateView (body)
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="request"></param>
+        /// <returns></returns>
         [HttpPut("{id}")]
         public async Task<PersonRetrieveView> Put(Guid id, [FromBody] PersonUpdateView request)
         {
@@ -55,6 +71,13 @@ namespace Sandbox.Server.Http.WebApi.V1.Controllers
           return view;
         }
 
+        /// <summary>
+        /// Delete a specific Person instance based on guid
+        /// </summary>
+        /// <remarks>
+        /// Note that id is a Guid, not an integer
+        /// </remarks>
+        /// <param name="id"></param>
         [HttpDelete("{id}")]
         public virtual async void Delete(Guid id)
         {
@@ -67,6 +90,10 @@ namespace Sandbox.Server.Http.WebApi.V1.Controllers
             _handler.Delete(instance);
         }
 
+        /// <summary>
+        /// Retrieve all Person instances stored
+        /// </summary>
+        /// <returns></returns>
         [HttpGet]
         public async Task<IEnumerable<PersonRetrieveView>> Get()
         {
@@ -81,6 +108,10 @@ namespace Sandbox.Server.Http.WebApi.V1.Controllers
           return view;
         }
 
+        /// <summary>
+        /// Get all Revisions, returning a dictionary of Id/Revision guids
+        /// </summary>
+        /// <returns></returns>
         [HttpGet]
         [Route("revisions")]
         public async Task<Dictionary<Guid, Guid>> GetRevisions()
