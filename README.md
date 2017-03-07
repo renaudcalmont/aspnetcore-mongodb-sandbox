@@ -54,7 +54,7 @@ A sample __docker-compose.yml__ script is provided. After running an initial __d
 The MongoDB container port mapping is for convenience only. So you can safely remove it to avoid conflict with any other running MongoDB daemon.
 
 ## TODO:
-* Security
+* Security - or consider the excellent [IdentityServer4](https://github.com/IdentityServer/IdentityServer4)
     * roles and ACL
     * integrate OWIN for OAuth2 authentication
     * deeply implement ownership for multi-tenancy?
@@ -68,7 +68,6 @@ The MongoDB container port mapping is for convenience only. So you can safely re
     * use WebSockets (SignalR) to broadcast changes in real-time
     * archive older versions of an entity at update and delete operations
     * consider adopting a specification such as OData or JSON API - or keep it going its own way...
-    * use swagger when in development mode
     * add minimal client-side libraries (such as bower and gulp)
 * Persistence
     * get the connection strings from an external resource directory for production environment
@@ -86,5 +85,6 @@ Trying here to keep track of and thank all the building blocks composing this pr
 * [Yeoman](http://yeoman.io/) - every project.json here started with a "[yo aspnet](https://www.npmjs.com/package/generator-aspnet)"
 * [Docker](https://www.docker.com/), including the hub and compose
 * [Travis CI](https://travis-ci.org/)
+* [Swagger UI](http://swagger.io/swagger-ui/) thanks to [abauzac](https://github.com/abauzac) contribution
 
 Feel free to PR on this document or the project's code.
